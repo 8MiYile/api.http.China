@@ -20,12 +20,15 @@ def index(type,http_code):
         url_main = "http." + http_code
     if search_string(noun_main,type):
         url_main = "http" + http_code + ".com"
+
     if search_string(noun_cat,type):
         redirect_response = redirect("https://"+url_main+"/"+http_code)
+        return redirect_response
+
     if search_string(nouns,type):
         redirect_response = redirect("https://"+url_main+"/"+http_code.jpg)
         #redirect_response.headers['Cache-Control'] = 'max-age=0, s-maxage=300'
-    return redirect_response
+        return redirect_response
 
 def search_string(list,target_string):
     if target_string in list:
