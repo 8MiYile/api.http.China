@@ -17,9 +17,9 @@ def index(type,http_code):
     if type == 'random':
         host_name = request.host.split(":")[0]
         url_main = host_name + "/" + nouns[random.randint(0,len(nouns)-1)]
-
-    if search_string(nouns,type) == False:
+    elif search_string(nouns,type) == False:
         abort(404)
+    
     if search_string(noun_suffix,type) or search_string(noun_cat,type):
         url_main = "http." + type
     if search_string(noun_main,type):
