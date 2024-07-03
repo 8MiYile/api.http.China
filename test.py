@@ -1,13 +1,7 @@
-#import httpx
-#from flask_caching import Cache
-from flask import Flask, abort, redirect
 import random
-
-app = Flask(__name__)
-@app.route('/<path:type>/<path:http_code>')
 def index(type,http_code):
     if type == '' or http_code == '':
-        abort(404)
+        return False
     
     noun_cat=['cat']
     noun_suffix = ['dog','pizza','garden','fish']
@@ -22,12 +16,10 @@ def index(type,http_code):
         url_main = "http" + type + ".com"
 
     if search_string(noun_cat,type) or type == "random":
-        redirect_response = redirect("https://" + url_main +"/" + http_code)
-        return redirect_response
+        print("https://" + url_main +"/" + http_code)
+
     if search_string(nouns,type):
-        redirect_response = redirect("https://" + url_main + "/" + http_code + ".jpg")
-        #redirect_response.headers['Cache-Control'] = 'max-age=0, s-maxage=300'
-        return redirect_response
+        print("https://" + url_main + "/" + http_code + ".jpg")
 
 def search_string(list,target_string):
     if target_string in list:
@@ -38,4 +30,5 @@ def search_string(list,target_string):
 
 
 if __name__ == '__main__':
-    app.run()
+    index("random","302")
+    
