@@ -1,6 +1,6 @@
 #import httpx
 #from flask_caching import Cache
-from flask import Flask, abort, redirect
+from flask import Flask, abort, redirect, request
 import random
 
 app = Flask(__name__)
@@ -15,7 +15,8 @@ def index(type,http_code):
     nouns = noun_suffix + noun_main + noun_cat
 
     if type == 'random':
-        url_main = "api.http.中国/" + nouns[random.randint(0,len(nouns)-1)]
+        host_name = request.host.split(":")[0]
+        url_main = host_name + "/" + nouns[random.randint(0,len(nouns)-1)]
     if search_string(noun_suffix,type) or search_string(noun_cat,type):
         url_main = "http." + type
     if search_string(noun_main,type):
