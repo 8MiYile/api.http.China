@@ -1,0 +1,42 @@
+{
+  "headers": [
+    {
+      "source": "/",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=600, must-revalidate"
+        }
+      ]
+    }
+  ],
+  "regions": [
+    "hkg1"
+  ],
+  "rewrites": [
+    {
+      "source": "/dog/:match*",
+      "destination": "https://http.dog/:match*"
+    },
+    {
+      "source": "/cat/:match*",
+      "destination": "https://http.cat/:match*"
+    },
+    {
+      "source": "/pizza/:match*",
+      "destination": "https://http.pizza/:match*"
+    },
+    {
+      "source": "/funny/:match",
+      "destination": "https://alist.8mi.tech/什么路径/:match.jpg"
+    },
+    {
+      "source": "/garden/:match*",
+      "destination": "https://http.garden/:match*"
+    },
+    {
+      "source": "/goats/:match*",
+      "destination": "https://httpgoats.com/:match*"
+    }
+  ]
+}
